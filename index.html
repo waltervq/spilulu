@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPILULU - DJ & Producteur Visionnaire</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .slide-in-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .slide-in-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .hover-lift {
+            transition: all 0.3s ease;
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+        }
+        
+        .text-gradient {
+            background: linear-gradient(135deg, #ff6b6b 0%, #4ecdc4 50%, #45b7d1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .floating {
+            animation: floating 4s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(5deg); }
+        }
+        
+        .pulse-glow {
+            animation: pulse-glow 3s ease-in-out infinite;
+        }
+        
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(255, 107, 107, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(255, 107, 107, 0.6); }
+        }
+        
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background: linear-gradient(135deg, #ff6b6b 0%, #4ecdc4 100%);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .sound-wave {
+            animation: sound-wave 2s ease-in-out infinite;
+        }
+        
+        @keyframes sound-wave {
+            0%, 100% { height: 20px; }
+            50% { height: 40px; }
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .social-icon {
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            transform: scale(1.2) rotate(10deg);
+        }
+        
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .mobile-menu.open {
+            transform: translateX(0);
+        }
+        
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+                line-height: 1.1;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+        }
+        
+        @media (max-width: 640px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white overflow-x-hidden">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-gray-900/80 backdrop-blur-md z-50 border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="text-2xl font-bold text-gradient">SPILULU</div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="#accueil" class="nav-link text-gray-300 hover:text-white">Accueil</a>
+                    <a href="#biographie" class="nav-link text-gray-300 hover:text-white">Biographie</a>
+                    <a href="#voyage" class="nav-link text-gray-300 hover:text-white">Le Voyage</a>
+                    <a href="#vision" class="nav-link text-gray-300 hover:text-white">Vision</a>
+                    <a href="#contact" class="nav-link text-gray-300 hover:text-white">Contact</a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden text-gray-300 hover:text-white" onclick="toggleMobileMenu()">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="mobile-menu fixed top-16 right-0 w-64 h-full bg-gray-900/95 backdrop-blur-md md:hidden">
+            <div class="flex flex-col p-6 space-y-4">
+                <a href="#accueil" class="text-gray-300 hover:text-white py-2" onclick="closeMobileMenu()">Accueil</a>
+                <a href="#biographie" class="text-gray-300 hover:text-white py-2" onclick="closeMobileMenu()">Biographie</a>
+                <a href="#voyage" class="text-gray-300 hover:text-white py-2" onclick="closeMobileMenu()">Le Voyage</a>
+                <a href="#vision" class="text-gray-300 hover:text-white py-2" onclick="closeMobileMenu()">Vision</a>
+                <a href="#contact" class="text-gray-300 hover:text-white py-2" onclick="closeMobileMenu()">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="accueil" class="min-h-screen flex items-center gradient-bg relative overflow-hidden">
+        <!-- Animated Background Elements -->
+        <div class="absolute inset-0 opacity-10">
+            <div class="floating absolute top-20 left-10 w-16 h-16 bg-gradient-to-r from-red-400 to-pink-400 rounded-full"></div>
+            <div class="floating absolute top-40 right-20 w-12 h-12 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full" style="animation-delay: 1s;"></div>
+            <div class="floating absolute bottom-40 left-1/4 w-20 h-20 bg-gradient-to-r from-green-400 to-teal-400 rounded-full" style="animation-delay: 2s;"></div>
+            <div class="floating absolute bottom-20 right-1/3 w-8 h-8 bg-gradient-to-r from-purple-400 to-indigo-400 rounded-full" style="animation-delay: 3s;"></div>
+        </div>
+        
+        <!-- Sound Wave Animation -->
+        <div class="absolute left-10 top-1/2 transform -translate-y-1/2 hidden lg:flex space-x-1 opacity-30">
+            <div class="sound-wave bg-gradient-to-t from-red-400 to-pink-400 w-1 rounded-full"></div>
+            <div class="sound-wave bg-gradient-to-t from-blue-400 to-cyan-400 w-1 rounded-full" style="animation-delay: 0.2s;"></div>
+            <div class="sound-wave bg-gradient-to-t from-green-400 to-teal-400 w-1 rounded-full" style="animation-delay: 0.4s;"></div>
+            <div class="sound-wave bg-gradient-to-t from-purple-400 to-indigo-400 w-1 rounded-full" style="animation-delay: 0.6s;"></div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <div class="fade-in">
+                <h1 class="hero-title text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6">
+                    <span class="text-gradient">SPILULU</span>
+                </h1>
+                <p class="hero-subtitle text-lg sm:text-xl md:text-2xl mb-4 text-gray-300 max-w-3xl mx-auto">
+                    DJ & Producteur Visionnaire
+                </p>
+                <p class="text-base sm:text-lg mb-8 text-gray-400 max-w-4xl mx-auto leading-relaxed">
+                    Pionnier de la fusion des sons tribaux africains avec la house, la techno et l'afrobeat. 
+                    Créateur de paysages sonores immersifs qui transcendent l'ordinaire.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                    <button onclick="scrollToSection('voyage')" class="bg-gradient-to-r from-red-500 to-pink-500 text-white px-8 py-3 rounded-full font-semibold hover:from-red-600 hover:to-pink-600 transition-all duration-300 hover:scale-105 pulse-glow">
+                        Découvrir le Voyage
+                    </button>
+                    <button onclick="scrollToSection('contact')" class="border-2 border-gray-400 text-gray-300 px-8 py-3 rounded-full font-semibold hover:border-white hover:text-white transition-all duration-300">
+                        Écouter Maintenant
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Biographie -->
+    <section id="biographie" class="py-16 sm:py-20 bg-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+                <div class="slide-in-left">
+                    <h2 class="section-title text-3xl sm:text-4xl font-bold text-white mb-6">Biographie</h2>
+                    <div class="space-y-4 text-gray-300 leading-relaxed">
+                        <p class="text-base sm:text-lg">
+                            <span class="text-gradient font-semibold">Spilulu</span>, anciennement connu sous le nom de G'Sparks, 
+                            est un ingénieur du son, beatmaker, compositeur, producteur et DJ congolais, pionnier de la fusion 
+                            des sons des villages tribaux africains avec la house, la techno, le zouk et le rap.
+                        </p>
+                        <p class="text-base sm:text-lg">
+                            Il a créé un son afrobeat unique et développé une dynamique autour de la musique afro-house 
+                            et de l'afro-beat en République démocratique du Congo, de Lubumbashi à Kinshasa, 
+                            anciennement formé au Ndombolo.
+                        </p>
+                    </div>
+                    
+                    <!-- Genres musicaux -->
+                    <div class="mt-8">
+                        <h3 class="text-xl font-semibold text-white mb-4">Genres & Influences</h3>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="bg-gradient-to-r from-red-500 to-pink-500 text-white px-4 py-2 rounded-full text-sm font-medium">Afrobeat</span>
+                            <span class="bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-4 py-2 rounded-full text-sm font-medium">House</span>
+                            <span class="bg-gradient-to-r from-green-500 to-teal-500 text-white px-4 py-2 rounded-full text-sm font-medium">Techno</span>
+                            <span class="bg-gradient-to-r from-purple-500 to-indigo-500 text-white px-4 py-2 rounded-full text-sm font-medium">Tribal</span>
+                            <span class="bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-4 py-2 rounded-full text-sm font-medium">Zouk</span>
+                            <span class="bg-gradient-to-r from-pink-500 to-rose-500 text-white px-4 py-2 rounded-full text-sm font-medium">Ndombolo</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="slide-in-right">
+                    <div class="relative">
+                        <div class="w-64 h-64 sm:w-80 sm:h-80 mx-auto bg-gradient-to-br from-red-500 via-purple-500 to-blue-500 rounded-full flex items-center justify-center text-6xl sm:text-8xl shadow-2xl pulse-glow">
+                            🎧
+                        </div>
+                        <div class="absolute -top-4 -right-4 w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-r from-yellow-400 to-orange-400 rounded-full flex items-center justify-center text-2xl sm:text-3xl floating">
+                            🎵
+                        </div>
+                        <div class="absolute -bottom-4 -left-4 w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-r from-green-400 to-teal-400 rounded-full flex items-center justify-center text-xl sm:text-2xl floating" style="animation-delay: 1s;">
+                            🎶
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Le Voyage -->
+    <section id="voyage" class="py-16 sm:py-20 bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 sm:mb-16 fade-in">
+                <h2 class="section-title text-3xl sm:text-4xl font-bold text-white mb-4">Le Voyage</h2>
+                <p class="text-lg sm:text-xl text-gray-400 max-w-3xl mx-auto">
+                    Une exploration sonore qui repousse les limites et transcende l'ordinaire
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                <!-- Carte 1: Performances -->
+                <div class="glass-card rounded-xl p-6 hover-lift fade-in">
+                    <div class="text-4xl sm:text-5xl mb-4 text-center">🌍</div>
+                    <h3 class="text-xl font-semibold text-white mb-3">Performances Mondiales</h3>
+                    <p class="text-gray-300 text-sm sm:text-base leading-relaxed">
+                        Festivals et rassemblements underground renommés à travers le monde. 
+                        Chaque performance est une exploration unique qui connecte avec le public.
+                    </p>
+                </div>
+                
+                <!-- Carte 2: Style Musical -->
+                <div class="glass-card rounded-xl p-6 hover-lift fade-in" style="animation-delay: 0.2s;">
+                    <div class="text-4xl sm:text-5xl mb-4 text-center">🎛️</div>
+                    <h3 class="text-xl font-semibold text-white mb-3">Paysages Sonores</h3>
+                    <p class="text-gray-300 text-sm sm:text-base leading-relaxed">
+                        Sets immersifs mêlant subtilités rythmiques, textures mélodiques et lignes de basse profondes. 
+                        Une fusion de techno, house, ambient et musiques du monde.
+                    </p>
+                </div>
+                
+                <!-- Carte 3: Innovation -->
+                <div class="glass-card rounded-xl p-6 hover-lift fade-in md:col-span-2 lg:col-span-1" style="animation-delay: 0.4s;">
+                    <div class="text-4xl sm:text-5xl mb-4 text-center">🚀</div>
+                    <h3 class="text-xl font-semibold text-white mb-3">Innovation Créative</h3>
+                    <p class="text-gray-300 text-sm sm:text-base leading-relaxed">
+                        Repousser les limites sonores tout en conservant un groove indéniable. 
+                        Créer des expériences authentiques et percutantes.
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Citation inspirante -->
+            <div class="mt-12 sm:mt-16 text-center slide-in-left">
+                <blockquote class="text-xl sm:text-2xl font-light text-gray-300 italic max-w-4xl mx-auto leading-relaxed">
+                    "Chaque set est une exploration, repoussant les limites sonores tout en conservant un groove indéniable. 
+                    Chaque rythme raconte une histoire et chaque fréquence vibre de possibilités."
+                </blockquote>
+                <cite class="block mt-4 text-gradient font-semibold">- SPILULU</cite>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vision -->
+    <section id="vision" class="py-16 sm:py-20 bg-gradient-to-br from-gray-800 to-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 sm:mb-16 fade-in">
+                <h2 class="section-title text-3xl sm:text-4xl font-bold text-white mb-6">La Vision</h2>
+                <div class="max-w-4xl mx-auto">
+                    <p class="text-lg sm:text-xl text-gray-300 mb-8 leading-relaxed">
+                        SPILULU envisage un monde où la musique transcende les barrières, 
+                        favorisant l'unité et la conscience à travers le rythme et le son.
+                    </p>
+                    <p class="text-base sm:text-lg text-gray-400 leading-relaxed">
+                        Un engagement à repousser les limites créatives et à inspirer le public 
+                        à explorer de nouvelles dimensions sonores.
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Objectifs visuels -->
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+                <div class="text-center slide-in-left">
+                    <div class="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-r from-red-500 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl sm:text-3xl pulse-glow">
+                        🎵
+                    </div>
+                    <h3 class="font-semibold text-white mb-2">Unité</h3>
+                    <p class="text-gray-400 text-sm">Rassembler par la musique</p>
+                </div>
+                
+                <div class="text-center slide-in-left" style="animation-delay: 0.2s;">
+                    <div class="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl sm:text-3xl pulse-glow">
+                        🌍
+                    </div>
+                    <h3 class="font-semibold text-white mb-2">Conscience</h3>
+                    <p class="text-gray-400 text-sm">Éveiller les esprits</p>
+                </div>
+                
+                <div class="text-center slide-in-left" style="animation-delay: 0.4s;">
+                    <div class="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-r from-green-500 to-teal-500 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl sm:text-3xl pulse-glow">
+                        🚀
+                    </div>
+                    <h3 class="font-semibold text-white mb-2">Innovation</h3>
+                    <p class="text-gray-400 text-sm">Repousser les limites</p>
+                </div>
+                
+                <div class="text-center slide-in-left" style="animation-delay: 0.6s;">
+                    <div class="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl sm:text-3xl pulse-glow">
+                        ✨
+                    </div>
+                    <h3 class="font-semibold text-white mb-2">Inspiration</h3>
+                    <p class="text-gray-400 text-sm">Explorer de nouveaux horizons</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Réseaux Sociaux & Contact -->
+    <section id="contact" class="py-16 sm:py-20 bg-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 sm:mb-16 fade-in">
+                <h2 class="section-title text-3xl sm:text-4xl font-bold text-white mb-4">Connectez-vous & Écoutez</h2>
+                <p class="text-lg sm:text-xl text-gray-400 max-w-3xl mx-auto">
+                    Rejoignez SPILULU dans cette aventure musicale évolutive
+                </p>
+            </div>
+            
+            <!-- Plateformes de streaming -->
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 mb-12 sm:mb-16">
+                <a href="#" class="glass-card rounded-xl p-6 text-center hover-lift group">
+                    <div class="text-4xl sm:text-5xl mb-4 social-icon"><i class="fab fa-instagram"></i></div>
+                    <h3 class="font-semibold text-white mb-2">Instagram</h3>
+                    <p class="text-gray-400 text-sm">@spilulu_official</p>
+                </a>
+                
+                <a href="#" class="glass-card rounded-xl p-6 text-center hover-lift group">
+                    <div class="text-4xl sm:text-5xl mb-4 social-icon"><i class="fab fa-youtube"></i></div>
+                    <h3 class="font-semibold text-white mb-2">YouTube</h3>
+                    <p class="text-gray-400 text-sm">SPILULU</p>
+                </a>
+                
+                <a href="#" class="glass-card rounded-xl p-6 text-center hover-lift group">
+                    <div class="text-4xl sm:text-5xl mb-4 social-icon"><i class="fab fa-soundcloud"></i></div>
+                    <h3 class="font-semibold text-white mb-2">SoundCloud</h3>
+                    <p class="text-gray-400 text-sm">spilulu</p>
+                </a>
+                
+                <a href="#" class="glass-card rounded-xl p-6 text-center hover-lift group">
+                    <div class="text-4xl sm:text-5xl mb-4 social-icon"> <i class="fab fa-spotify"></i></div>
+                    <h3 class="font-semibold text-white mb-2">Spotify</h3>
+                    <p class="text-gray-400 text-sm">SPILULU</p>
+                </a>
+            </div>
+            
+            <!-- Call to action -->
+            <div class="text-center slide-in-left">
+                <h3 class="text-2xl sm:text-3xl font-bold text-white mb-6">Explorez le Voyage Sonore</h3>
+                <p class="text-base sm:text-lg text-gray-400 mb-8 max-w-3xl mx-auto">
+                    Plongez plus profondément dans les projets artistiques de SPILULU, 
+                    les performances passées et les événements à venir.
+                </p>
+                <button onclick="openMusicPlatforms()" class="bg-gradient-to-r from-red-500 to-pink-500 text-white px-8 py-4 rounded-full font-semibold hover:from-red-600 hover:to-pink-600 transition-all duration-300 hover:scale-105 pulse-glow text-lg">
+                    Écouter Maintenant
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 border-t border-gray-800 py-8 sm:py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="text-2xl sm:text-3xl font-bold text-gradient mb-4">SPILULU</div>
+            <p class="text-gray-400 mb-6 text-sm sm:text-base">DJ & Producteur Visionnaire - Créateur de paysages sonores immersifs</p>
+            <div class="flex justify-center space-x-6 mb-8">
+                <!-- <a href="#" class="text-gray-400 hover:text-white transition-colors text-2xl social-icon">📷</a>
+                <a href="#" class="text-gray-400 hover:text-white transition-colors text-2xl social-icon">📺</a>
+                <a href="#" class="text-gray-400 hover:text-white transition-colors text-2xl social-icon">☁️</a>
+                <a href="#" class="text-gray-400 hover:text-white transition-colors text-2xl social-icon">🎵</a> -->
+                <div class="flex space-x-4">
+                    <!-- Instagram -->
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors text-2xl social-icon">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <!-- Youtube -->
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors text-2xl social-icon">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                    <!-- SoundCloud -->
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors text-2xl social-icon">
+                        <i class="fab fa-soundcloud"></i>
+                    </a>
+                    <!-- Spotify -->
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors text-2xl social-icon">
+                        <i class="fab fa-spotify"></i>
+                    </a>    
+                </div>
+
+            </div>
+            <p class="text-gray-500 text-xs sm:text-sm">Designed by <a href="https://github.com/">Vainqueur KASUMBA</a> © 2025 SPILULU. Tous droits réservés. | Pionnier de l'Afrobeat Moderne</p>
+        </div>
+    </footer>
+
+    <script>
+        // Animation au scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observer tous les éléments animés
+        document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Navigation fluide
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+
+        // Liens de navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Menu mobile
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('open');
+        }
+
+        function closeMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.remove('open');
+        }
+
+        // Fermer le menu mobile en cliquant à l'extérieur
+        document.addEventListener('click', function(event) {
+            const menu = document.getElementById('mobileMenu');
+            const menuButton = event.target.closest('button');
+            
+            if (!menu.contains(event.target) && !menuButton) {
+                menu.classList.remove('open');
+            }
+        });
+
+        // Plateformes de musique
+        function openMusicPlatforms() {
+            alert('🎵 Découvrez SPILULU sur toutes les plateformes !\n\n📷 Instagram: @spilulu_official\n📺 YouTube: SPILULU\n☁️ SoundCloud: spilulu\n🎵 Spotify: SPILULU');
+        }
+
+        // Animation d'entrée de la page
+        window.addEventListener('load', () => {
+            document.querySelector('#accueil .fade-in').classList.add('visible');
+        });
+
+        // Effet parallaxe léger sur le hero
+        let ticking = false;
+        
+        function updateParallax() {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('#accueil');
+            if (hero) {
+                hero.style.transform = `translateY(${scrolled * 0.3}px)`;
+            }
+            ticking = false;
+        }
+
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                requestAnimationFrame(updateParallax);
+                ticking = true;
+            }
+        });
+
+        // Responsive: ajuster les animations sur mobile
+        function handleResize() {
+            const isMobile = window.innerWidth < 768;
+            const floatingElements = document.querySelectorAll('.floating');
+            
+            floatingElements.forEach(el => {
+                if (isMobile) {
+                    el.style.animationDuration = '6s';
+                } else {
+                    el.style.animationDuration = '4s';
+                }
+            });
+        }
+
+        window.addEventListener('resize', handleResize);
+        handleResize(); // Appel initial
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9801463fe5c073ca',t:'MTc1ODAzNTI1Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
