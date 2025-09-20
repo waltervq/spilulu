@@ -58,6 +58,10 @@
         .gradient-bg {
             background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
         }
+
+        .img-bg{
+            background: url('') no-repeat center center/cover;
+        }
         
         .text-gradient {
             background: linear-gradient(135deg, #ff6b6b 0%, #4ecdc4 50%, #45b7d1 100%);
@@ -171,7 +175,7 @@
                     <a href="#biographie" class="nav-link text-gray-300 hover:text-white">Biographie</a>
                     <a href="#voyage" class="nav-link text-gray-300 hover:text-white">Le Voyage</a>
                     <a href="#vision" class="nav-link text-gray-300 hover:text-white">Vision</a>
-                    <a href="#contact" class="nav-link text-gray-300 hover:text-white">Contact</a>
+                    <a href="gallerie.html" class="nav-link text-gray-300 hover:text-white">Gallerie</a>
                 </div>
                 
                 <!-- Mobile Menu Button -->
@@ -190,13 +194,15 @@
                 <a href="#biographie" class="text-gray-300 hover:text-white py-2" onclick="closeMobileMenu()">Biographie</a>
                 <a href="#voyage" class="text-gray-300 hover:text-white py-2" onclick="closeMobileMenu()">Le Voyage</a>
                 <a href="#vision" class="text-gray-300 hover:text-white py-2" onclick="closeMobileMenu()">Vision</a>
-                <a href="#contact" class="text-gray-300 hover:text-white py-2" onclick="closeMobileMenu()">Contact</a>
+                <a href="gallerie.html" class="text-gray-300 hover:text-white py-2" onclick="closeMobileMenu()">Gallerie</a>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
     <section id="accueil" class="min-h-screen flex items-center gradient-bg relative overflow-hidden">
+        <!-- Background Image -->
+        <div class="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30" style="background-image: url('img/home_bg.jpg');"></div>
         <!-- Animated Background Elements -->
         <div class="absolute inset-0 opacity-10">
             <div class="floating absolute top-20 left-10 w-16 h-16 bg-gradient-to-r from-red-400 to-pink-400 rounded-full"></div>
@@ -272,8 +278,8 @@
                 
                 <div class="slide-in-right">
                     <div class="relative">
-                        <div class="w-64 h-64 sm:w-80 sm:h-80 mx-auto bg-gradient-to-br from-red-500 via-purple-500 to-blue-500 rounded-full flex items-center justify-center text-6xl sm:text-8xl shadow-2xl pulse-glow">
-                            🎧
+                        <div class="w-64 h-64 sm:w-80 sm:h-80 mx-auto bg-gradient-to-br from-red-500 via-purple-500 to-blue-500 rounded-full flex items-center justify-center shadow-2xl pulse-glow overflow-hidden">
+                            <img src="img/spi1.jpg" alt="SPILULU portrait" class="w-full h-full object-cover rounded-full">
                         </div>
                         <div class="absolute -top-4 -right-4 w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-r from-yellow-400 to-orange-400 rounded-full flex items-center justify-center text-2xl sm:text-3xl floating">
                             🎵
